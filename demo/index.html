@@ -25,6 +25,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../paper-button/paper-button.html">
   <link rel="import" href="../../paper-icon-button/paper-icon-button.html">
   <link rel="import" href="../../paper-toast/paper-toast.html">
+  <link rel="import" href="../../arc-icons/arc-icons.html">
+  <link rel="import" href="../../paper-icon-button/paper-icon-button.html">
 
   <link rel="import" href="../response-raw-viewer.html">
 
@@ -54,9 +56,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-button raised on-tap="download">go</paper-button>
         </div>
         <response-raw-viewer response-text="[[response]]" query="[[query]]">
-          <paper-icon-button title="Additional action" icon="arc:cached" on-tap="_additionalAction"></paper-icon-button>
-          <paper-icon-button title="Clear the code" icon="arc:clear" on-tap="_clearCode"></paper-icon-button>
-          <paper-input label="Search" value="{{query}}"></paper-input>
+          <paper-icon-button content-action title="Additional action" icon="arc:cached" on-tap="_additionalAction"></paper-icon-button>
+          <paper-icon-button content-action title="Clear the code" icon="arc:clear" on-tap="_clearCode"></paper-icon-button>
+          <paper-input content-action label="Search" value="{{query}}"></paper-input>
         </response-raw-viewer>
       </template>
     </demo-snippet>
