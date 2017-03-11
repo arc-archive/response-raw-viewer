@@ -17,15 +17,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script src="../../web-component-tester/browser.js"></script>
     <script src="../../iron-test-helpers/test-helpers.js"></script>
     <script src="../../iron-test-helpers/mock-interactions.js"></script>
-
-    <!-- Step 1: import the element to test -->
     <link rel="import" href="../response-raw-viewer.html">
   </head>
   <body>
 
     <test-fixture id="basic">
       <template>
-        <response-raw-viewer></response-raw-viewer>
+        <response-raw-viewer response-text="Some test text to be displayed in the raw viewer"></response-raw-viewer>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="ca">
+      <template>
+        <response-raw-viewer>
+          <paper-icon-button content-action></paper-icon-button>
+        </response-raw-viewer>
       </template>
     </test-fixture>
 
@@ -33,11 +39,50 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     /* global suite, test, fixture, assert */
     suite('basic', function() {
       var element;
+      var output;
+
       setup(function() {
         element = fixture('basic');
+        output = Polymer.dom(element.root).querySelector('#rawContent');
       });
-      test('`response-raw-viewer` should be initialized', function() {
-        assert.equal(element.isAttached, true, 'element.isAttached equals true');
+
+      test('Should innerHTML response to display container', function() {
+        var html = output.innerHTML;
+        assert.isString(html);
+      });
+
+      test('Should set hasResponse property', function() {
+        assert.isTrue(element.hasResponse);
+      });
+
+      test('Should mark search phrase', function() {
+        element.query = 'test';
+        var marks = output.querySelectorAll('mark.arc-search-mark');
+        assert.equal(marks.length, 1);
+      });
+    });
+
+    suite('content actions', function() {
+      var element;
+
+      setup(function() {
+        element = fixture('ca');
+      });
+
+      test('Should have distributed nodes', function() {
+        var buttons = element.queryAllEffectiveChildren('paper-icon-button');
+        assert.equal(buttons.length, 1);
+      });
+
+      test('Content actions are hidden', function() {
+        var panel = Polymer.dom(element.root).querySelector('.actions-panel');
+        assert.isTrue(panel.classList.contains('hidden'));
+      });
+
+      test('Content actions are visible when has response', function() {
+        element.responseText = 'test';
+        var panel = Polymer.dom(element.root).querySelector('.actions-panel');
+        assert.isFalse(panel.classList.contains('hidden'));
       });
     });
     </script>
