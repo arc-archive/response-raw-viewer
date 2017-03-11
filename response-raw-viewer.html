@@ -24,7 +24,7 @@ An element to display the raw response data without syntax highlighting.
 
 ### Example
 ```
-<response-raw-viewer></response-raw-viewer>
+<response-raw-viewer response-text="Some response"></response-raw-viewer>
 ```
 ```
 var display = document.querySelector('response-raw-viewer');
@@ -36,11 +36,12 @@ By default the user can copy content of the code to clipboard and wrap the code.
 This actions are always visible.
 You can add more actions in the actions bar by putting elements as a children
 of this element.
+
+
 ### Example
 ```
 <response-raw-viewer>
-  <paper-icon-button title="Additional action" icon="arc:cached"></paper-icon-button>
-  <paper-icon-button title="Clear the code" icon="arc:clear"></paper-icon-button>
+  <paper-icon-button content-action title="Copy content to clipboard" icon="arc:content-copy"></paper-icon-button>
 </response-raw-viewer>
 ```
 See demo for more information.
@@ -50,6 +51,20 @@ If the platform doesn't support native text search, this element implements
 `ArcBehaviors.TextSearchBehavior` and exposes the `query` attribute.
 Set any text to the `query` attribute and it will automatically highlight
 occurance of the text.
+
+## Content actions
+The element can render actions pane above the code view. Action pane is to
+display content actions that is relevan in context of the response displayed
+below the icon buttons. It should be icon buttons or just buttons added to this
+view.
+
+Buttons need to have `content-action` property set to be included to this view.
+
+```
+<response-raw-viewer>
+  <paper-icon-button content-action title="Copy content to clipboard" icon="arc:content-copy"></paper-icon-button>
+</json-viewer>
+```
 
 ### Styling
 `<response-raw-viewer>` provides the following custom properties and mixins for styling:
@@ -88,7 +103,7 @@ Custom property | Description | Default
       @apply(--arc-font-code1);
     }
 
-    .raw-content.wrap {
+    :host([wrap-text]) .raw-content {
       white-space: pre-wrap;
       word-wrap: break-word;
     }
@@ -104,7 +119,6 @@ Custom property | Description | Default
     }
 
     .actions-panel.hidden {
-      /*visibility: hidden;*/
       display: none;
     }
 
@@ -113,9 +127,7 @@ Custom property | Description | Default
     }
     </style>
     <div class$="[[_computeActionsPanelClass(hasResponse)]]">
-      <paper-icon-button title="Copy content to clipboard" icon="arc:content-copy" id="copyButton" on-tap="_copyToClipboard"></paper-icon-button>
-      <paper-icon-button title="Wrap or unwrap text" icon="arc:wrap-text" toggles on-tap="_toggleTextWrap"></paper-icon-button>
-      <content></content>
+      <content select="[content-action]"></content>
     </div>
     <code id="rawContent" class="raw-content" hidden$="[[!hasResponse]]"></code>
     <p class="no-info" hidden$="[[hasResponse]]">Nothing to dispplay.</p>
@@ -174,59 +186,24 @@ Custom property | Description | Default
       }
       this.mark(query);
     },
-
-    _copyToClipboard: function() {
-      // From https://github.com/google/material-design-lite/blob/master/docs/_assets/snippets.js
-      var snipRange = document.createRange();
-      snipRange.selectNodeContents(this.$.rawContent);
-      var selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(snipRange);
-      var result = false;
-      try {
-        result = document.execCommand('copy');
-        this.$.copyButton.icon = 'arc:done';
-      } catch (err) {
-        // Copy command is not available
-        Polymer.Base._error(err);
-        this.fire('app-log', {
-          message: err.message
-        });
-        this.$.copyButton.icon = 'arc:error';
-      }
-
-      // Return to the copy button after a second.
-      this.async(function() {
-        this._resetCopyButtonState();
-      }, 1000);
-
-      selection.removeAllRanges();
-      return result;
-    },
-
-    _resetCopyButtonState: function() {
-      this.$.copyButton.icon = 'arc:content-copy';
-    },
-
+    // Computes if the response is available and content is displayed.
     _computeHasResponse: function(responseText) {
       return !!responseText;
     },
-
+    /**
+     * Computes CSS class for the actions pane.
+     *
+     * @param {Boolean} hasResponse The `hasResponse` propety value of the
+     * element.
+     * @return CSS class names for the panel depending on state of the
+     * `hasResponse`property.
+     */
     _computeActionsPanelClass: function(hasResponse) {
       var clazz = 'actions-panel';
       if (!hasResponse) {
         clazz += ' hidden';
       }
       return clazz;
-    },
-    // Toggles `wrap` class name in event's target element.
-    _toggleTextWrap: function(e) {
-      e = Polymer.dom(e);
-      if (e.localTarget.active) {
-        this.$.rawContent.classList.add('wrap');
-      } else {
-        this.$.rawContent.classList.remove('wrap');
-      }
     }
   });
   </script>
