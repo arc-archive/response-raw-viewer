@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/advanced-rest-client/response-raw-viewer.svg?branch=master)](https://travis-ci.org/advanced-rest-client/response-raw-viewer)  
+[![Build Status](https://travis-ci.org/advanced-rest-client/response-raw-viewer.svg?branch=stage)](https://travis-ci.org/advanced-rest-client/response-raw-viewer)  
 
 # response-raw-viewer
 
@@ -7,7 +7,7 @@ An element to display the raw response data without syntax highlighting.
 
 ### Example
 ```
-<response-raw-viewer></response-raw-viewer>
+<response-raw-viewer response-text="Some response"></response-raw-viewer>
 ```
 ```
 var display = document.querySelector('response-raw-viewer');
@@ -19,11 +19,12 @@ By default the user can copy content of the code to clipboard and wrap the code.
 This actions are always visible.
 You can add more actions in the actions bar by putting elements as a children
 of this element.
+
+
 ### Example
 ```
 <response-raw-viewer>
-  <paper-icon-button title="Additional action" icon="arc:cached"></paper-icon-button>
-  <paper-icon-button title="Clear the code" icon="arc:clear"></paper-icon-button>
+  <paper-icon-button content-action title="Copy content to clipboard" icon="arc:content-copy"></paper-icon-button>
 </response-raw-viewer>
 ```
 See demo for more information.
@@ -33,6 +34,23 @@ If the platform doesn't support native text search, this element implements
 `ArcBehaviors.TextSearchBehavior` and exposes the `query` attribute.
 Set any text to the `query` attribute and it will automatically highlight
 occurance of the text.
+
+## Content actions
+The element can render actions pane above the code view. Action pane is to
+display content actions that is relevan in context of the response displayed
+below the icon buttons. It should be icon buttons or just buttons added to this
+view.
+
+Buttons need to have `content-action` property set to be included to this view.
+
+```
+<response-raw-viewer>
+  <paper-icon-button content-action title="Copy content to clipboard" icon="arc:content-copy"></paper-icon-button>
+</json-viewer>
+```
+
+## Content text wrapping
+Set `wrap-text` property on the element to force the wiewer to wrap text.
 
 ### Styling
 `<response-raw-viewer>` provides the following custom properties and mixins for styling:
