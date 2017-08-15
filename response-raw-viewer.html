@@ -164,6 +164,11 @@ Custom property | Description | Default
       query: {
         type: String,
         observer: '_queryChanged'
+      },
+      // If set to true then the text in the panel will be wrapped.
+      wrapText: {
+        type: Boolean,
+        reflectToAttribute: true
       }
     },
 
