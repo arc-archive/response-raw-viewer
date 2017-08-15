@@ -1,3 +1,13 @@
+<a name="0.1.4"></a>
+## [0.1.4](https://github.com/advanced-rest-client/response-raw-viewer/compare/0.1.2...0.1.4) (2017-08-15)
+
+
+### Fix
+
+* Added  property declaration ([7f7e5a5fc83052cc549b1b45e43dd5d9729f66ed](https://github.com/advanced-rest-client/response-raw-viewer/commit/7f7e5a5fc83052cc549b1b45e43dd5d9729f66ed))
+
+
+
 <a name="0.1.3"></a>
 ## [0.1.3](https://github.com/advanced-rest-client/response-raw-viewer/compare/0.1.2...v0.1.3) (2017-03-12)
 
