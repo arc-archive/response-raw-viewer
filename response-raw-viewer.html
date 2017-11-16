@@ -77,6 +77,7 @@ Custom property | Description | Default
 `--response-raw-viewer-button-active` | Background color of the `wrap` button | `#BDBDBD`
 `--response-raw-viewer-action-bar` | Mixin applied to the action bar above the highlighted code | `{}`
 `--no-info-message` | Mixin applied to the "nothing to display" message (theme variable) | `{}`
+`--response-raw-viewer-code` | Mixin applied to the code block | `{}`
 
 @group UI Elements
 @element response-raw-viewer
@@ -89,19 +90,19 @@ Custom property | Description | Default
       display: block;
       overflow: overlay;
       width: 100%;
-      @apply(--response-raw-viewer);
+      @apply --response-raw-viewer;
     }
 
     .raw-content {
-      font-family: 'Roboto Mono', 'Consolas', 'Menlo', monospace;
-      -webkit-font-smoothing: antialiased;
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 20px;
+      @apply --arc-font-code1;
       -webkit-user-select: text;
       white-space: pre;
       width: 100%;
-      @apply(--arc-font-code1);
+      min-height: 52px;
+      display: block;
+      overflow: auto;
+      max-width: 100%;
+      @apply --response-raw-viewer-code;
     }
 
     :host([wrap-text]) .raw-content {
@@ -110,9 +111,9 @@ Custom property | Description | Default
     }
 
     .actions-panel {
-      @apply(--layout-horizontal);
-      @apply(--layout-center);
-      @apply(--response-raw-viewer-action-bar);
+      @apply --layout-horizontal;
+      @apply --layout-center;
+      @apply --response-raw-viewer-action-bar;
     }
 
     .actions-panel.hidden {
@@ -120,7 +121,7 @@ Custom property | Description | Default
     }
 
     .no-info {
-      @apply(--no-info-message);
+      @apply --no-info-message;
     }
     </style>
     <div class$="[[_computeActionsPanelClass(hasResponse)]]">
