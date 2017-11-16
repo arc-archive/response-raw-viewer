@@ -1,3 +1,13 @@
+<a name="0.1.6"></a>
+## [0.1.6](https://github.com/advanced-rest-client/response-raw-viewer/compare/0.1.4...0.1.6) (2017-11-16)
+
+
+### Fix
+
+* Fixes https://github.com/jarrodek/ChromeRestClient/issues/1104 ([a7531713d950a60f2a70e53cc3830d29e9861fe2](https://github.com/advanced-rest-client/response-raw-viewer/commit/a7531713d950a60f2a70e53cc3830d29e9861fe2))
+
+
+
 <a name="0.1.5"></a>
 ## [0.1.5](https://github.com/advanced-rest-client/response-raw-viewer/compare/0.1.4...0.1.5) (2017-08-15)
 
