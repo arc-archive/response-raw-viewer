@@ -62,4 +62,5 @@ Custom property | Description | Default
 `--response-raw-viewer-button-active` | Background color of the `wrap` button | `#BDBDBD`
 `--response-raw-viewer-action-bar` | Mixin applied to the action bar above the highlighted code | `{}`
 `--no-info-message` | Mixin applied to the "nothing to display" message (theme variable) | `{}`
+`--response-raw-viewer-code` | Mixin applied to the code block | `{}`
 
