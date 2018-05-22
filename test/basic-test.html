@@ -1,13 +1,4 @@
 <!doctype html>
-<!--
-@license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
 <html>
   <head>
     <meta charset="utf-8">
@@ -18,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script src="../../iron-test-helpers/test-helpers.js"></script>
     <script src="../../iron-test-helpers/mock-interactions.js"></script>
     <link rel="import" href="../response-raw-viewer.html">
+    <link rel="import" href="../../paper-icon-button/paper-icon-button.html">
   </head>
   <body>
 
@@ -30,58 +22,52 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <test-fixture id="ca">
       <template>
         <response-raw-viewer>
-          <paper-icon-button content-action></paper-icon-button>
+          <paper-icon-button slot="content-action"></paper-icon-button>
         </response-raw-viewer>
       </template>
     </test-fixture>
 
     <script>
-    /* global suite, test, fixture, assert */
-    suite('basic', function() {
-      var element;
-      var output;
+    suite('basic', () => {
+      let element;
+      let output;
 
-      setup(function() {
+      setup(() => {
         element = fixture('basic');
         output = Polymer.dom(element.root).querySelector('#rawContent');
       });
 
-      test('Should innerHTML response to display container', function() {
-        var html = output.innerHTML;
+      test('Should innerHTML response to display container', () => {
+        const html = output.innerHTML;
         assert.isString(html);
       });
 
-      test('Should set hasResponse property', function() {
+      test('Should set hasResponse property', () => {
         assert.isTrue(element.hasResponse);
-      });
-
-      test('Should mark search phrase', function() {
-        element.query = 'test';
-        var marks = output.querySelectorAll('mark.arc-search-mark');
-        assert.equal(marks.length, 1);
       });
     });
 
-    suite('content actions', function() {
-      var element;
+    suite('content actions', () => {
+      let element;
 
-      setup(function() {
+      setup(() => {
         element = fixture('ca');
       });
 
-      test('Should have distributed nodes', function() {
-        var buttons = element.queryAllEffectiveChildren('paper-icon-button');
+      test('Should have distributed nodes', () => {
+        const slot = element.shadowRoot.querySelector('slot[name="content-action"]');
+        const buttons = slot.assignedNodes();
         assert.equal(buttons.length, 1);
       });
 
-      test('Content actions are hidden', function() {
-        var panel = Polymer.dom(element.root).querySelector('.actions-panel');
+      test('Content actions are hidden', () => {
+        const panel = element.shadowRoot.querySelector('.actions-panel');
         assert.isTrue(panel.classList.contains('hidden'));
       });
 
-      test('Content actions are visible when has response', function() {
+      test('Content actions are visible when has response', () => {
         element.responseText = 'test';
-        var panel = Polymer.dom(element.root).querySelector('.actions-panel');
+        const panel = element.shadowRoot.querySelector('.actions-panel');
         assert.isFalse(panel.classList.contains('hidden'));
       });
     });
