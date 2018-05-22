@@ -1,7 +1,7 @@
 {
   "name": "response-raw-viewer",
   "description": "An element to display the raw response data",
-  "version": "2.0.0-preview",
+  "version": "2.0.0",
   "license": "Apache-2.0",
   "authors": [
     "Pawel Psztyc",
@@ -23,7 +23,7 @@
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0",
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^2.0.0",
-    "payload-parser-behavior": "advanced-rest-client/payload-parser-behavior#2.0.0-preview"
+    "payload-parser-behavior": "advanced-rest-client/payload-parser-behavior#^2.0.0"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
