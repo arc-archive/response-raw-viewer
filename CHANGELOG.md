@@ -1,3 +1,17 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/advanced-rest-client/response-raw-viewer/compare/0.1.4...2.0.0) (2018-05-22)
+
+
+### Breaking
+
+* Publishing stable release with Polymer 2 support ([a257f2e8912214907001f01c2c92d7415b15fc8c](https://github.com/advanced-rest-client/response-raw-viewer/commit/a257f2e8912214907001f01c2c92d7415b15fc8c))
+
+### Fix
+
+* Fixes https://github.com/jarrodek/ChromeRestClient/issues/1104 ([a7531713d950a60f2a70e53cc3830d29e9861fe2](https://github.com/advanced-rest-client/response-raw-viewer/commit/a7531713d950a60f2a70e53cc3830d29e9861fe2))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/advanced-rest-client/response-raw-viewer/compare/0.1.4...1.0.0) (2018-04-03)
 
