@@ -1,10 +1,10 @@
 {
   "name": "@advanced-rest-client/response-raw-viewer",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "Apache-2.0",
   "description": "An element to display the raw response data",
   "devDependencies": {
-    "@polymer/gen-typescript-declarations": "^1.1.1"
+    "@polymer/gen-typescript-declarations": "^1.5.1"
   },
   "main": "response-raw-viewer.html",
   "authors": [
