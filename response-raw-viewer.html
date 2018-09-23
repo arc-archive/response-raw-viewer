@@ -146,9 +146,36 @@ the License.
       if (!response) {
         this.$.rawContent.innerHTML = '';
       } else {
-        this.$.rawContent.innerHTML = this.htmlEscape(response);
+        const value = this._responseValue(response);
+        this.$.rawContent.innerHTML = value ? this.htmlEscape(value) : '';
       }
     }
+    /**
+     * ARC stores workspace data with response object in a file.
+     * It may happen that the data is a buffer when saving. This restores
+     * the string if needed.
+     * @param {String|Object} response Usually string response but may be
+     * ARC converted object.
+     * @return {String} Safe to process string.
+     */
+    _responseValue(response) {
+      if (!response) {
+        return response;
+      }
+      if (typeof response === 'string') {
+        return response;
+      }
+      switch (response.type) {
+        case 'Buffer':
+          let str = '';
+          for (let i = 0, len = response.data.length; i < len; i++) {
+            str += String.fromCharCode(response.data[i]);
+          }
+          return str;
+      }
+      return '';
+    }
+
     // Computes if the response is available and content is displayed.
     _computeHasResponse(responseText) {
       return !!responseText;
@@ -158,7 +185,7 @@ the License.
      *
      * @param {Boolean} hasResponse The `hasResponse` propety value of the
      * element.
-     * @return CSS class names for the panel depending on state of the
+     * @return {String} CSS class names for the panel depending on state of the
      * `hasResponse`property.
      */
     _computeActionsPanelClass(hasResponse) {
