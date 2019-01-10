@@ -13,9 +13,15 @@
   </head>
   <body>
 
-    <test-fixture id="basic">
+    <test-fixture id="Basic">
       <template>
         <response-raw-viewer response-text="Some test text to be displayed in the raw viewer"></response-raw-viewer>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="Empty">
+      <template>
+        <response-raw-viewer></response-raw-viewer>
       </template>
     </test-fixture>
 
@@ -32,9 +38,12 @@
       let element;
       let output;
 
-      setup(() => {
-        element = fixture('basic');
-        output = Polymer.dom(element.root).querySelector('#rawContent');
+      setup((done) => {
+        element = fixture('Basic');
+        flush(() => {
+          output = element.shadowRoot.querySelector('#rawContent');
+          done();
+        });
       });
 
       test('Should innerHTML response to display container', () => {
@@ -69,6 +78,113 @@
         element.responseText = 'test';
         const panel = element.shadowRoot.querySelector('.actions-panel');
         assert.isFalse(panel.classList.contains('hidden'));
+      });
+    });
+
+    suite('_responseChanged()', () => {
+      let element;
+      let output;
+      setup((done) => {
+        element = fixture('Empty');
+        flush(() => {
+          output = element.shadowRoot.querySelector('#rawContent');
+          done();
+        });
+      });
+
+      test('Clears the output when no response', () => {
+        output.innerText = 'test';
+        element._responseChanged();
+        assert.equal(output.innerText.trim(), '');
+      });
+
+      test('Calls _responseValue() with response', () => {
+        const spy = sinon.spy(element, '_responseValue');
+        element._responseChanged('test');
+        assert.isTrue(spy.called);
+        assert.equal(spy.args[0][0], 'test');
+      });
+
+      test('Calls htmlEscape() with response when _responseValue() returns a value', () => {
+        const spy = sinon.spy(element, 'htmlEscape');
+        element._responseChanged('test');
+        assert.isTrue(spy.called);
+        assert.equal(spy.args[0][0], 'test');
+      });
+
+      test('Won\'t call htmlEscape() when _responseValue() returns a nothing', () => {
+        const spy = sinon.spy(element, 'htmlEscape');
+        element._responseChanged({});
+        assert.isFalse(spy.called);
+      });
+
+      test('Output is empty when _responseValue() returns a nothing', () => {
+        element._responseChanged({
+          data: 'test'
+        });
+        assert.equal(output.innerText.trim(), '');
+      });
+    });
+
+    suite('_responseValue()', () => {
+      let element;
+      setup(() => {
+        element = fixture('Empty');
+      });
+
+      function str2ab(str) {
+        const buf = new ArrayBuffer(str.length * 2);
+        const bufView = new Uint16Array(buf);
+        for (let i = 0, strLen = str.length; i < strLen; i++) {
+          bufView[i] = str.charCodeAt(i);
+        }
+        return buf;
+      }
+
+      test('Returns undefined when argument is undefined', () => {
+        assert.isUndefined(element._responseValue());
+      });
+
+      test('Returns empty string when argument is empty string', () => {
+        const result = element._responseValue('');
+        assert.equal(result, '');
+      });
+
+      test('Returns string value for string argument', () => {
+        const result = element._responseValue('test');
+        assert.equal(result, 'test');
+      });
+
+      test('Returns string value for string argument', () => {
+        const result = element._responseValue('test');
+        assert.equal(result, 'test');
+      });
+
+      test('Converts value from ARrayBuffer', () => {
+        const ab = str2ab('test');
+        const result = element._responseValue({
+          type: 'Buffer',
+          data: new Uint16Array(ab)
+        });
+        assert.equal(result, 'test');
+      });
+    });
+
+    suite('_computeActionsPanelClass()', () => {
+      let element;
+      setup((done) => {
+        element = fixture('Empty');
+        flush(() => done());
+      });
+
+      test('Returns default class name', () => {
+        const result = element._computeActionsPanelClass(true);
+        assert.equal(result, 'actions-panel');
+      });
+
+      test('Adds hidden class name', () => {
+        const result = element._computeActionsPanelClass(false);
+        assert.equal(result, 'actions-panel hidden');
       });
     });
     </script>
