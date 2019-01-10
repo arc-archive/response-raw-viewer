@@ -1,3 +1,22 @@
+<a name="2.0.2"></a>
+## [2.0.2](https://github.com/advanced-rest-client/response-raw-viewer/compare/0.1.4...2.0.2) (2019-01-10)
+
+
+### Breaking
+
+* Publishing stable release with Polymer 2 support ([a257f2e8912214907001f01c2c92d7415b15fc8c](https://github.com/advanced-rest-client/response-raw-viewer/commit/a257f2e8912214907001f01c2c92d7415b15fc8c))
+
+### Fix
+
+* Fixes https://github.com/jarrodek/ChromeRestClient/issues/1104 ([a7531713d950a60f2a70e53cc3830d29e9861fe2](https://github.com/advanced-rest-client/response-raw-viewer/commit/a7531713d950a60f2a70e53cc3830d29e9861fe2))
+* Fixes https://github.com/jarrodek/ChromeRestClient/issues/1157 ([09e2aa7a7c60d88e73618d5e7620a458b6a7d8b5](https://github.com/advanced-rest-client/response-raw-viewer/commit/09e2aa7a7c60d88e73618d5e7620a458b6a7d8b5))
+
+### Update
+
+* Adding support for ARC restored response object ([a6c78fd4dda8ed886597b32077a7cc09ba384a96](https://github.com/advanced-rest-client/response-raw-viewer/commit/a6c78fd4dda8ed886597b32077a7cc09ba384a96))
+
+
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/advanced-rest-client/response-raw-viewer/compare/0.1.4...2.0.1) (2018-09-23)
 

@@ -27,6 +27,7 @@ the License.
     .raw-content {
       @apply --arc-font-code1;
       -webkit-user-select: text;
+      user-select: text;
       white-space: pre;
       width: 100%;
       min-height: 52px;
@@ -59,7 +60,7 @@ the License.
       <slot name="content-action"></slot>
     </div>
     <code id="rawContent" class="raw-content" hidden$="[[!hasResponse]]"></code>
-    <p class="no-info" hidden$="[[hasResponse]]">Nothing to dispplay.</p>
+    <p class="no-info" hidden$="[[hasResponse]]">Nothing to display.</p>
   </template>
   <script>
   /**
@@ -84,7 +85,8 @@ the License.
    *
    * ```html
    * <response-raw-viewer>
-   *  <paper-icon-button slot="content-action" title="Copy content to clipboard" icon="arc:content-copy"></paper-icon-button>
+   *  <paper-icon-button slot="content-action"
+   *    title="Copy content to clipboard" icon="arc:content-copy"></paper-icon-button>
    * </response-raw-viewer>
    * ```
    *
@@ -118,7 +120,9 @@ the License.
    * @appliesMixin ArcBehaviors.PayloadParserBehavior
    */
   class ResponseRawViewer extends ArcBehaviors.PayloadParserBehavior(Polymer.Element) {
-    static get is() { return 'response-raw-viewer'; }
+    static get is() {
+      return 'response-raw-viewer';
+    }
     static get properties() {
       return {
         /**
@@ -189,11 +193,11 @@ the License.
      * `hasResponse`property.
      */
     _computeActionsPanelClass(hasResponse) {
-      let clazz = 'actions-panel';
+      let klas = 'actions-panel';
       if (!hasResponse) {
-        clazz += ' hidden';
+        klas += ' hidden';
       }
-      return clazz;
+      return klas;
     }
   }
   window.customElements.define(ResponseRawViewer.is, ResponseRawViewer);
