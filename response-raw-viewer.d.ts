@@ -5,12 +5,18 @@
  *   https://github.com/Polymer/tools/tree/master/packages/gen-typescript-declarations
  *
  * To modify these typings, edit the source file(s):
- *   response-raw-viewer.html
+ *   response-raw-viewer.js
  */
 
-/// <reference path="../polymer/types/polymer-element.d.ts" />
-/// <reference path="../iron-flex-layout/iron-flex-layout.d.ts" />
-/// <reference path="../payload-parser-behavior/payload-parser-behavior.d.ts" />
+
+// tslint:disable:variable-name Describing an API that's defined elsewhere.
+// tslint:disable:no-any describes the API as best we are able today
+
+import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+
+import {PayloadParserMixin} from '@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js';
+
+import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 
 declare namespace ApiElements {
 
@@ -36,7 +42,8 @@ declare namespace ApiElements {
    *
    * ```html
    * <response-raw-viewer>
-   *  <paper-icon-button slot="content-action" title="Copy content to clipboard" icon="arc:content-copy"></paper-icon-button>
+   *  <paper-icon-button slot="content-action"
+   *    title="Copy content to clipboard" icon="arc:content-copy"></paper-icon-button>
    * </response-raw-viewer>
    * ```
    *
@@ -64,7 +71,7 @@ declare namespace ApiElements {
    * `--response-raw-viewer-code` | Mixin applied to the code block | `{}`
    */
   class ResponseRawViewer extends
-    ArcBehaviors.PayloadParserBehavior(
+    PayloadParserMixin(
     Object) {
 
     /**
@@ -111,6 +118,9 @@ declare namespace ApiElements {
   }
 }
 
-interface HTMLElementTagNameMap {
-  "response-raw-viewer": ApiElements.ResponseRawViewer;
+declare global {
+
+  interface HTMLElementTagNameMap {
+    "response-raw-viewer": ApiElements.ResponseRawViewer;
+  }
 }

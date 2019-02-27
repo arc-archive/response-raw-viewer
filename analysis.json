@@ -2,129 +2,124 @@
   "schema_version": "1.0.0",
   "elements": [
     {
-      "description": "An element to display the raw response data without syntax highlighting.\n\n### Example\n\n```html\n<response-raw-viewer response-text=\"Some response\"></response-raw-viewer>\n<script>\nconst display = document.querySelector('response-raw-viewer');\ndisplay.responseText = someResponse;\n< /script>\n```\n\n## Content actions\n\nCustom actions can be defined by adding a child with `slot=\"content-action\"`\nattribute set. Eny element will be rendered in content action field.\n\n### Example\n\n```html\n<response-raw-viewer>\n <paper-icon-button slot=\"content-action\" title=\"Copy content to clipboard\" icon=\"arc:content-copy\"></paper-icon-button>\n</response-raw-viewer>\n```\n\nSee demo for more examples.\n\n## Content text wrapping\n\nSet `wrap-text` property on the element to force the wiewer to wrap text.\n\n## Changes in version 2\n\n- The element does not support custom search and does not include text search library\n\n### Styling\n\n`<response-raw-viewer>` provides the following custom properties and mixins for styling:\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--response-raw-viewer` | Mixin applied to the element | `{}`\n`--arc-font-code1` | Mixin applied to the code block (theme mixin) | `{}`\n`--response-raw-viewer-button-active` | Background color of the `wrap` button | `#BDBDBD`\n`--response-raw-viewer-action-bar` | Mixin applied to the action bar above the highlighted code | `{}`\n`--no-info-message` | Mixin applied to the \"nothing to display\" message (theme variable) | `{}`\n`--response-raw-viewer-code` | Mixin applied to the code block | `{}`",
+      "description": "An element to display the raw response data without syntax highlighting.\n\n### Example\n\n```html\n<response-raw-viewer response-text=\"Some response\"></response-raw-viewer>\n<script>\nconst display = document.querySelector('response-raw-viewer');\ndisplay.responseText = someResponse;\n< /script>\n```\n\n## Content actions\n\nCustom actions can be defined by adding a child with `slot=\"content-action\"`\nattribute set. Eny element will be rendered in content action field.\n\n### Example\n\n```html\n<response-raw-viewer>\n <paper-icon-button slot=\"content-action\"\n   title=\"Copy content to clipboard\" icon=\"arc:content-copy\"></paper-icon-button>\n</response-raw-viewer>\n```\n\nSee demo for more examples.\n\n## Content text wrapping\n\nSet `wrap-text` property on the element to force the wiewer to wrap text.\n\n## Changes in version 2\n\n- The element does not support custom search and does not include text search library\n\n### Styling\n\n`<response-raw-viewer>` provides the following custom properties and mixins for styling:\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--response-raw-viewer` | Mixin applied to the element | `{}`\n`--arc-font-code1` | Mixin applied to the code block (theme mixin) | `{}`\n`--response-raw-viewer-button-active` | Background color of the `wrap` button | `#BDBDBD`\n`--response-raw-viewer-action-bar` | Mixin applied to the action bar above the highlighted code | `{}`\n`--no-info-message` | Mixin applied to the \"nothing to display\" message (theme variable) | `{}`\n`--response-raw-viewer-code` | Mixin applied to the code block | `{}`",
       "summary": "",
-      "path": "response-raw-viewer.html",
+      "path": "response-raw-viewer.js",
       "properties": [
         {
           "name": "AMP_RE",
-          "type": "RegExp | null | undefined",
+          "type": "?",
           "description": "Regexp to search for the `&` character",
           "privacy": "public",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 43,
-              "column": 8
+              "line": 39,
+              "column": 4
             },
             "end": {
-              "line": 49,
-              "column": 9
+              "line": 41,
+              "column": 5
             }
           },
           "metadata": {
             "polymer": {
-              "readOnly": true,
-              "attributeType": "RegExp"
+              "readOnly": true
             }
           },
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "GT_RE",
-          "type": "RegExp | null | undefined",
+          "type": "?",
           "description": "Regexp to search for the `>` character",
           "privacy": "public",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 51,
-              "column": 8
+              "line": 46,
+              "column": 4
             },
             "end": {
-              "line": 57,
-              "column": 9
+              "line": 48,
+              "column": 5
             }
           },
           "metadata": {
             "polymer": {
-              "readOnly": true,
-              "attributeType": "RegExp"
+              "readOnly": true
             }
           },
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "LT_RE",
-          "type": "RegExp | null | undefined",
+          "type": "?",
           "description": "Regexp to search for the `<` character",
           "privacy": "public",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 59,
-              "column": 8
+              "line": 53,
+              "column": 4
             },
             "end": {
-              "line": 65,
-              "column": 9
+              "line": 55,
+              "column": 5
             }
           },
           "metadata": {
             "polymer": {
-              "readOnly": true,
-              "attributeType": "RegExp"
+              "readOnly": true
             }
           },
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "SQUOT_RE",
-          "type": "RegExp | null | undefined",
+          "type": "?",
           "description": "Regexp to search for the `'` character",
           "privacy": "public",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 67,
-              "column": 8
+              "line": 60,
+              "column": 4
             },
             "end": {
-              "line": 73,
-              "column": 9
+              "line": 62,
+              "column": 5
             }
           },
           "metadata": {
             "polymer": {
-              "readOnly": true,
-              "attributeType": "RegExp"
+              "readOnly": true
             }
           },
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "QUOT_RE",
-          "type": "RegExp | null | undefined",
+          "type": "?",
           "description": "Regexp to search for the `\"` character",
           "privacy": "public",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 75,
-              "column": 8
+              "line": 67,
+              "column": 4
             },
             "end": {
-              "line": 81,
-              "column": 9
+              "line": 69,
+              "column": 5
             }
           },
           "metadata": {
             "polymer": {
-              "readOnly": true,
-              "attributeType": "RegExp"
+              "readOnly": true
             }
           },
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "responseText",
@@ -133,12 +128,12 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 126,
-              "column": 8
+              "line": 132,
+              "column": 6
             },
             "end": {
-              "line": 129,
-              "column": 9
+              "line": 135,
+              "column": 7
             }
           },
           "metadata": {
@@ -155,12 +150,12 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 131,
-              "column": 8
+              "line": 137,
+              "column": 6
             },
             "end": {
-              "line": 135,
-              "column": 9
+              "line": 141,
+              "column": 7
             }
           },
           "metadata": {
@@ -178,12 +173,12 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 137,
-              "column": 8
+              "line": 143,
+              "column": 6
             },
             "end": {
-              "line": 140,
-              "column": 9
+              "line": 146,
+              "column": 7
             }
           },
           "metadata": {
@@ -199,13 +194,13 @@
           "description": "Escape HTML to save HTML text.",
           "privacy": "public",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 90,
+              "line": 76,
               "column": 4
             },
             "end": {
-              "line": 107,
+              "line": 93,
               "column": 5
             }
           },
@@ -217,20 +212,23 @@
               "description": "A HTML string to be escaped."
             }
           ],
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "return": {
+            "type": "String"
+          },
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "formArrayToString",
           "description": "Parse input array to string x-www-form-urlencoded.\n\nNote that this function doesn't encodes the name and value. Use\n`this.formArrayToString(this.encodeUrlEncoded(arr))`\nto create a encoded string from the array.",
           "privacy": "public",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 119,
+              "line": 105,
               "column": 4
             },
             "end": {
-              "line": 131,
+              "line": 117,
               "column": 5
             }
           },
@@ -246,20 +244,20 @@
             "type": "String",
             "desc": "A parsed string of `name`=`value` pairs of the input objects."
           },
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "_modelItemToFormDataString",
           "description": "Creates a form data string for a single item.",
           "privacy": "protected",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 137,
+              "line": 123,
               "column": 4
             },
             "end": {
-              "line": 152,
+              "line": 141,
               "column": 5
             }
           },
@@ -275,20 +273,20 @@
             "type": "String",
             "desc": "Generated value string for x-www-form-urlencoded form."
           },
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "stringToArray",
           "description": "Parse input string to array of x-www-form-urlencoded form parameters.\n\nThis function will not url-decode names and values. Please, use\n`this.decodeUrlEncoded(this.stringToArray(str))` to create an array\nof decoded parameters.",
           "privacy": "public",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 164,
+              "line": 152,
               "column": 4
             },
             "end": {
-              "line": 178,
+              "line": 166,
               "column": 5
             }
           },
@@ -304,20 +302,20 @@
             "type": "Array.<Object>",
             "desc": "An array of params with `name` and `value` keys."
           },
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "_createParamsArray",
           "description": "Converts a string to an array with objects containing name and value keys",
           "privacy": "protected",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 184,
+              "line": 172,
               "column": 4
             },
             "end": {
-              "line": 221,
+              "line": 209,
               "column": 5
             }
           },
@@ -333,20 +331,20 @@
             "type": "Array.<Object>",
             "desc": "An array of params with `name` and `value` keys."
           },
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "_appendArrayResult",
           "description": "Appends form data parameter to an array.\nIf the parameter already exists in the array it creates an array for\nthe value onstead of appending the same parameter.",
           "privacy": "protected",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 232,
+              "line": 220,
               "column": 4
             },
             "end": {
-              "line": 248,
+              "line": 236,
               "column": 5
             }
           },
@@ -372,20 +370,20 @@
             "type": "Array",
             "desc": "Updated array"
           },
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "encodeUrlEncoded",
           "description": "Encode payload to x-www-form-urlencoded string.",
           "privacy": "public",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 254,
+              "line": 243,
               "column": 4
             },
             "end": {
-              "line": 270,
+              "line": 259,
               "column": 5
             }
           },
@@ -397,20 +395,23 @@
               "description": "An input data."
             }
           ],
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "return": {
+            "type": "(Array.<object> | String)"
+          },
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "_encodeValue",
           "description": "URL encodes a value.",
           "privacy": "protected",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 278,
+              "line": 267,
               "column": 4
             },
             "end": {
-              "line": 286,
+              "line": 275,
               "column": 5
             }
           },
@@ -426,20 +427,20 @@
             "type": "(String | Array.<String>)",
             "desc": "Encoded value. The same type as the input."
           },
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "decodeUrlEncoded",
           "description": "Decode x-www-form-urlencoded data.",
           "privacy": "public",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 292,
+              "line": 282,
               "column": 4
             },
             "end": {
-              "line": 308,
+              "line": 298,
               "column": 5
             }
           },
@@ -451,20 +452,23 @@
               "description": "An input data."
             }
           ],
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "return": {
+            "type": "(Array.<object> | String)"
+          },
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "_decodeValue",
           "description": "URL decodes a value.",
           "privacy": "protected",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 316,
+              "line": 306,
               "column": 4
             },
             "end": {
-              "line": 324,
+              "line": 314,
               "column": 5
             }
           },
@@ -480,20 +484,20 @@
             "type": "(String | Array.<String>)",
             "desc": "Decoded value. The same type as the input."
           },
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "_paramValue",
           "description": "Parse input string as a payload param key or value.",
           "privacy": "protected",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 330,
+              "line": 321,
               "column": 4
             },
             "end": {
-              "line": 337,
+              "line": 328,
               "column": 5
             }
           },
@@ -505,20 +509,23 @@
               "description": "An input to parse."
             }
           ],
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "return": {
+            "type": "String"
+          },
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "_paramLineToFormObject",
           "description": "Parse a line of key=value http params into an object with `name` and `value` keys.",
           "privacy": "protected",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 345,
+              "line": 336,
               "column": 4
             },
             "end": {
-              "line": 364,
+              "line": 355,
               "column": 5
             }
           },
@@ -534,20 +541,20 @@
             "type": "Object",
             "desc": "A parsed object with `name` and `value` keys."
           },
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "encodeQueryString",
           "description": "Returns a string where all characters that are not valid for a URL\ncomponent have been escaped. The escaping of a character is done by\nconverting it into its UTF-8 encoding and then encoding each of the\nresulting bytes as a %xx hexadecimal escape sequence.\n\nNote: this method will convert any space character into its escape\nshort form, '+' rather than %20. It should therefore only be used for\nquery-string parts.\n\nThe following character sets are **not** escaped by this method:\n- ASCII digits or letters\n- ASCII punctuation characters: ```- _ . ! ~ * ' ( )</pre>```\n\nNotice that this method <em>does</em> encode the URL component delimiter\ncharacters:<blockquote>\n\n```\n; / ? : & = + $ , #\n```",
           "privacy": "public",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 389,
+              "line": 380,
               "column": 4
             },
             "end": {
-              "line": 395,
+              "line": 386,
               "column": 5
             }
           },
@@ -563,20 +570,20 @@
             "type": "String",
             "desc": "a string with all invalid URL characters escaped"
           },
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "decodeQueryString",
           "description": "Returns a string where all URL component escape sequences have been\nconverted back to their original character representations.\n\nNote: this method will convert the space character escape short form, '+',\ninto a space. It should therefore only be used for query-string parts.",
           "privacy": "public",
           "sourceRange": {
-            "file": "../payload-parser-behavior/payload-parser-behavior.html",
+            "file": "../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js",
             "start": {
-              "line": 406,
+              "line": 397,
               "column": 4
             },
             "end": {
-              "line": 412,
+              "line": 403,
               "column": 5
             }
           },
@@ -592,7 +599,7 @@
             "type": "String",
             "desc": "string with no encoded URL component encoded sequences"
           },
-          "inheritedFrom": "ArcBehaviors.PayloadParserBehavior"
+          "inheritedFrom": "ArcBehaviors.PayloadParserMixin"
         },
         {
           "name": "_responseChanged",
@@ -600,12 +607,12 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 144,
-              "column": 4
+              "line": 150,
+              "column": 2
             },
             "end": {
-              "line": 151,
-              "column": 5
+              "line": 157,
+              "column": 3
             }
           },
           "metadata": {},
@@ -624,12 +631,12 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 160,
-              "column": 4
+              "line": 166,
+              "column": 2
             },
             "end": {
-              "line": 176,
-              "column": 5
+              "line": 182,
+              "column": 3
             }
           },
           "metadata": {},
@@ -651,12 +658,12 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 179,
-              "column": 4
+              "line": 185,
+              "column": 2
             },
             "end": {
-              "line": 181,
-              "column": 5
+              "line": 187,
+              "column": 3
             }
           },
           "metadata": {},
@@ -672,12 +679,12 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 190,
-              "column": 4
+              "line": 196,
+              "column": 2
             },
             "end": {
-              "line": 196,
-              "column": 5
+              "line": 202,
+              "column": 3
             }
           },
           "metadata": {},
@@ -704,12 +711,12 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 119,
-          "column": 2
+          "line": 73,
+          "column": 0
         },
         "end": {
-          "line": 197,
-          "column": 3
+          "line": 203,
+          "column": 1
         }
       },
       "privacy": "public",
@@ -721,12 +728,12 @@
           "description": "The response text to display.",
           "sourceRange": {
             "start": {
-              "line": 126,
-              "column": 8
+              "line": 132,
+              "column": 6
             },
             "end": {
-              "line": 129,
-              "column": 9
+              "line": 135,
+              "column": 7
             }
           },
           "metadata": {},
@@ -737,12 +744,12 @@
           "description": "Computed value, true if the responseText has text.",
           "sourceRange": {
             "start": {
-              "line": 131,
-              "column": 8
+              "line": 137,
+              "column": 6
             },
             "end": {
-              "line": 135,
-              "column": 9
+              "line": 141,
+              "column": 7
             }
           },
           "metadata": {},
@@ -753,12 +760,12 @@
           "description": "If set to true then the text in the panel will be wrapped.",
           "sourceRange": {
             "start": {
-              "line": 137,
-              "column": 8
+              "line": 143,
+              "column": 6
             },
             "end": {
-              "line": 140,
-              "column": 9
+              "line": 146,
+              "column": 7
             }
           },
           "metadata": {},
@@ -770,25 +777,10 @@
         "cssVariables": [],
         "selectors": []
       },
-      "slots": [
-        {
-          "description": "",
-          "name": "content-action",
-          "range": {
-            "start": {
-              "line": 58,
-              "column": 6
-            },
-            "end": {
-              "line": 58,
-              "column": 41
-            }
-          }
-        }
-      ],
+      "slots": [],
       "tagname": "response-raw-viewer",
       "mixins": [
-        "ArcBehaviors.PayloadParserBehavior"
+        "PayloadParserMixin"
       ]
     }
   ]

@@ -1,12 +1,37 @@
 {
-  "name": "@advanced-rest-client/response-raw-viewer",
-  "version": "2.0.2",
-  "license": "Apache-2.0",
   "description": "An element to display the raw response data",
-  "devDependencies": {
-    "@polymer/gen-typescript-declarations": "^1.5.1"
+  "keywords": [
+    "web-components",
+    "polymer",
+    "response",
+    "viewer",
+    "raw"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/advanced-rest-client/response-raw-viewer.git"
   },
-  "main": "response-raw-viewer.html",
+  "name": "@advanced-rest-client/response-raw-viewer",
+  "version": "3.0.0-preview.1",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@advanced-rest-client/arc-icons": "^3.0.0-preview.1",
+    "@polymer/gen-typescript-declarations": "^1.5.1",
+    "@polymer/iron-component-page": "^4.0.0",
+    "@polymer/iron-demo-helpers": "^3.0.0",
+    "@polymer/iron-test-helpers": "^3.0.0",
+    "@polymer/paper-button": "^3.0.0",
+    "@polymer/paper-icon-button": "^3.0.0",
+    "@polymer/paper-input": "^3.0.0",
+    "@polymer/paper-toast": "^3.0.0",
+    "@polymer/test-fixture": "^4.0.2",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "sinon": "^7.2.3",
+    "wct-mocha": "^1.0.0"
+  },
+  "main": "response-raw-viewer.js",
   "authors": [
     "Pawel Psztyc",
     "The Advanced REST client authors <arc@mulesoft.com>"
@@ -17,12 +42,17 @@
     "test": "polymer test --plugin local",
     "update-types": "gen-typescript-declarations --deleteExisting --outDir ."
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/advanced-rest-client/response-raw-viewer.git"
-  },
   "bugs": {
     "url": "https://github.com/advanced-rest-client/response-raw-viewer/issues",
     "email": "arc@mulesoft.com"
+  },
+  "contributors": [
+    "Pawel Psztyc",
+    "The Advanced REST client authors <arc@mulesoft.com>"
+  ],
+  "dependencies": {
+    "@advanced-rest-client/payload-parser-mixin": "^3.0.0-preview.1",
+    "@polymer/iron-flex-layout": "^3.0.0",
+    "@polymer/polymer": "^3.0.0"
   }
 }
