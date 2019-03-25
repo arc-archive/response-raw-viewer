@@ -11,10 +11,10 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.
 */
-import {PolymerElement} from '@polymer/polymer/polymer-element.js';
-import {PayloadParserMixin} from '@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js';
-import {html} from '@polymer/polymer/lib/utils/html-tag.js';
-import '@polymer/iron-flex-layout/iron-flex-layout.js';
+import {PolymerElement} from '../../@polymer/polymer/polymer-element.js';
+import {PayloadParserMixin} from '../../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js';
+import {html} from '../../@polymer/polymer/lib/utils/html-tag.js';
+import '../../@polymer/iron-flex-layout/iron-flex-layout.js';
 /**
  * An element to display the raw response data without syntax highlighting.
  *
