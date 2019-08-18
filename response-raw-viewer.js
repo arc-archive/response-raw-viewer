@@ -11,17 +11,14 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.
 */
-import {PolymerElement} from '../../@polymer/polymer/polymer-element.js';
-import {PayloadParserMixin} from '../../@advanced-rest-client/payload-parser-mixin/payload-parser-mixin.js';
-import {html} from '../../@polymer/polymer/lib/utils/html-tag.js';
-import '../../@polymer/iron-flex-layout/iron-flex-layout.js';
+import { html, css, LitElement } from 'lit-element';
 /**
  * An element to display the raw response data without syntax highlighting.
  *
  * ### Example
  *
  * ```html
- * <response-raw-viewer response-text="Some response"></response-raw-viewer>
+ * <response-raw-viewer responsetext="Some response"></response-raw-viewer>
  * <script>
  * const display = document.querySelector('response-raw-viewer');
  * display.responseText = someResponse;
@@ -46,45 +43,23 @@ import '../../@polymer/iron-flex-layout/iron-flex-layout.js';
  *
  * ## Content text wrapping
  *
- * Set `wrap-text` property on the element to force the wiewer to wrap text.
- *
- * ## Changes in version 2
- *
- * - The element does not support custom search and does not include text search library
- *
- * ### Styling
- *
- * `<response-raw-viewer>` provides the following custom properties and mixins for styling:
- *
- * Custom property | Description | Default
- * ----------------|-------------|----------
- * `--response-raw-viewer` | Mixin applied to the element | `{}`
- * `--arc-font-code1` | Mixin applied to the code block (theme mixin) | `{}`
- * `--response-raw-viewer-button-active` | Background color of the `wrap` button | `#BDBDBD`
- * `--response-raw-viewer-action-bar` | Mixin applied to the action bar above the highlighted code | `{}`
- * `--no-info-message` | Mixin applied to the "nothing to display" message (theme variable) | `{}`
- * `--response-raw-viewer-code` | Mixin applied to the code block | `{}`
+ * Set `wraptext` attribute on the element to force the wiewer to wrap text.
  *
  * @customElement
- * @polymer
  * @demo demo/index.html
  * @memberof ApiElements
  * @appliesMixin PayloadParserMixin
  */
-class ResponseRawViewer extends PayloadParserMixin(PolymerElement) {
-  static get template() {
-    return html`
-    <style>
-    :host {
+class ResponseRawViewer extends LitElement {
+  static get styles() {
+    return css`:host {
       display: block;
       overflow: overlay;
       width: 100%;
-      @apply --response-raw-viewer;
     }
 
     .raw-content {
-      @apply --arc-font-code1;
-      -webkit-user-select: text;
+      font-family: var(--arc-font-code-family);
       user-select: text;
       white-space: pre;
       width: 100%;
@@ -92,18 +67,22 @@ class ResponseRawViewer extends PayloadParserMixin(PolymerElement) {
       display: block;
       overflow: auto;
       max-width: 100%;
-      @apply --response-raw-viewer-code;
+      margin: 12px 0;
     }
 
-    :host([wrap-text]) .raw-content {
+    .raw-content[tabindex="-1"] {
+      outline: none;
+    }
+
+    :host([wraptext]) .raw-content {
       white-space: pre-wrap;
       word-wrap: break-word;
     }
 
     .actions-panel {
-      @apply --layout-horizontal;
-      @apply --layout-center;
-      @apply --response-raw-viewer-action-bar;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
     }
 
     .actions-panel.hidden {
@@ -111,50 +90,45 @@ class ResponseRawViewer extends PayloadParserMixin(PolymerElement) {
     }
 
     .no-info {
-      @apply --no-info-message;
-    }
-    </style>
-    <div class\$="[[_computeActionsPanelClass(hasResponse)]]">
-      <slot name="content-action"></slot>
-    </div>
-    <code id="rawContent" class="raw-content" hidden\$="[[!hasResponse]]"></code>
-    <p class="no-info" hidden\$="[[hasResponse]]">Nothing to display.</p>
-`;
+      font-style: var(--no-info-message-font-style, italic);
+      font-size: var(--no-info-message-font-size, 16px);
+      color: var(--no-info-message-color, rgba(0, 0, 0, 0.74));
+    }`;
   }
 
-  static get is() {
-    return 'response-raw-viewer';
+  render() {
+    const {
+      _actionsPanelClass,
+      responseText,
+      wrapText
+    } = this;
+    const tabIndex = wrapText ? '-1' : '0';
+    return html`
+    <div class="${_actionsPanelClass}">
+      <slot name="content-action"></slot>
+    </div>
+    ${responseText ?
+      html`<code class="raw-content" tabindex="${tabIndex}">${this._responseValue(responseText)}</code>`:
+      html`<p class="no-info">Nothing to display.</p>`}`;
   }
+
   static get properties() {
     return {
       /**
        * The response text to display.
        */
-      responseText: {
-        type: String,
-        observer: '_responseChanged'
-      },
-      // Computed value, true if the responseText has text.
-      hasResponse: {
-        type: Boolean,
-        value: false,
-        computed: '_computeHasResponse(responseText)'
-      },
+      responseText: { type: String },
       // If set to true then the text in the panel will be wrapped.
-      wrapText: {
-        type: Boolean,
-        reflectToAttribute: true
-      }
+      wrapText: { type: Boolean, reflect: true }
     };
   }
 
-  _responseChanged(response) {
-    if (!response) {
-      this.$.rawContent.innerHTML = '';
-    } else {
-      const value = this._responseValue(response);
-      this.$.rawContent.innerHTML = value ? this.htmlEscape(value) : '';
+  get _actionsPanelClass() {
+    let klas = 'actions-panel';
+    if (!this.responseText) {
+      klas += ' hidden';
     }
+    return klas;
   }
   /**
    * ARC stores workspace data with response object in a file.
@@ -171,35 +145,14 @@ class ResponseRawViewer extends PayloadParserMixin(PolymerElement) {
     if (typeof response === 'string') {
       return response;
     }
-    switch (response.type) {
-      case 'Buffer':
-        let str = '';
-        for (let i = 0, len = response.data.length; i < len; i++) {
-          str += String.fromCharCode(response.data[i]);
-        }
-        return str;
+    if (response.type === 'Buffer') {
+      let str = '';
+      for (let i = 0, len = response.data.length; i < len; i++) {
+        str += String.fromCharCode(response.data[i]);
+      }
+      return str;
     }
     return '';
   }
-
-  // Computes if the response is available and content is displayed.
-  _computeHasResponse(responseText) {
-    return !!responseText;
-  }
-  /**
-   * Computes CSS class for the actions pane.
-   *
-   * @param {Boolean} hasResponse The `hasResponse` propety value of the
-   * element.
-   * @return {String} CSS class names for the panel depending on state of the
-   * `hasResponse`property.
-   */
-  _computeActionsPanelClass(hasResponse) {
-    let klas = 'actions-panel';
-    if (!hasResponse) {
-      klas += ' hidden';
-    }
-    return klas;
-  }
 }
-window.customElements.define(ResponseRawViewer.is, ResponseRawViewer);
+window.customElements.define('response-raw-viewer', ResponseRawViewer);

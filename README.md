@@ -2,19 +2,13 @@
 
 [![Build Status](https://travis-ci.org/advanced-rest-client/response-raw-viewer.svg?branch=stage)](https://travis-ci.org/advanced-rest-client/response-raw-viewer)
 
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/advanced-rest-client/response-raw-viewer)
-
 ## &lt;response-raw-viewer&gt;
 
 An element to display the raw HTTP response data without syntax highlighting.
 
 ```html
-<response-raw-viewer response-text="Some response"></response-raw-viewer>
+<response-raw-viewer responsetext="Some response"></response-raw-viewer>
 ```
-
-### API components
-
-This components is a part of [API components ecosystem](https://elements.advancedrestclient.com/)
 
 ## Usage
 
@@ -33,48 +27,47 @@ npm install --save @advanced-rest-client/response-raw-viewer
     </script>
   </head>
   <body>
-    <response-raw-viewer response-text="Some response"></response-raw-viewer>
+    <response-raw-viewer responsetext="Some response"></response-raw-viewer>
   </body>
 </html>
 ```
 
-### In a Polymer 3 element
+### In a LitElement
 
 ```js
-import {PolymerElement, html} from '@polymer/polymer';
+import { LitElement, html } from 'lit-element';
 import '@advanced-rest-client/response-raw-viewer/response-raw-viewer.js';
 
 class SampleElement extends PolymerElement {
-  static get template() {
+  render() {
     return html`
-    <response-raw-viewer response-text="Some response"></response-raw-viewer>
+    <response-raw-viewer
+      .responseText="${this.response}"></response-raw-viewer>
     `;
-  }
-
-  _authChanged(e) {
-    console.log(e.detail);
   }
 }
 customElements.define('sample-element', SampleElement);
 ```
 
-### Installation
+## Development
 
 ```sh
 git clone https://github.com/advanced-rest-client/response-raw-viewer
-cd api-url-editor
+cd response-raw-viewer
 npm install
-npm install -g polymer-cli
 ```
 
 ### Running the demo locally
 
 ```sh
-polymer serve --npm
-open http://127.0.0.1:<port>/demo/
+npm start
 ```
 
 ### Running the tests
 ```sh
-polymer test --npm
+npm test
 ```
+
+### API components
+
+This components is a part of [API components ecosystem](https://elements.advancedrestclient.com/)
