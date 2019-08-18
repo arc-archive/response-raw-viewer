@@ -119,3 +119,7 @@
 
 
 
+# [3.0.0](https://github.com/advanced-rest-client/response-raw-viewer/compare/0.1.4...3.0.0) (2019-08-18)
+
+
+
