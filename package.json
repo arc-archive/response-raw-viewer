@@ -1,7 +1,7 @@
 {
   "name": "@advanced-rest-client/response-raw-viewer",
   "description": "An element to display the raw response data",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "license": "Apache-2.0",
   "main": "response-raw-viewer.js",
   "keywords": [
@@ -35,18 +35,18 @@
     "@advanced-rest-client/testing-karma-sl": "^1.0.4",
     "@anypoint-web-components/anypoint-button": "^1.0.10",
     "@anypoint-web-components/anypoint-input": "^0.1.7",
-    "@anypoint-web-components/anypoint-styles": "^1.0.0-preview.1",
-    "@commitlint/cli": "^8.1.0",
+    "@anypoint-web-components/anypoint-styles": "^1.0.0",
+    "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^7.0.0",
     "@open-wc/testing": "^2.3.3",
-    "@open-wc/testing-karma": "^3.1.31",
+    "@open-wc/testing-karma": "^3.1.29",
     "@polymer/gen-typescript-declarations": "^1.6.2",
     "deepmerge": "^4.0.0",
     "es-dev-server": "^1.17.1",
     "husky": "^1.0.0",
     "karma": "^4.3.0",
     "lint-staged": "^9.2.5",
-    "sinon": "^7.4.1"
+    "sinon": "^7.5.0"
   },
   "scripts": {
     "test": "karma start --coverage",
@@ -60,10 +60,9 @@
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
     "test:watch": "karma start --auto-watch=true --single-run=false",
-    "test:legacy": "karma start --legacy --coverage",
-    "test:legacy:watch": "karma start --legacy --auto-watch=true --single-run=false",
-    "test:sl": "karma start karma.sl.config.js --legacy --coverage",
-    "generate-model": "node demo/model.js"
+    "test:legacy": "karma start --compatibility all --coverage",
+    "test:legacy:watch": "karma start --compatibility all --auto-watch=true --single-run=false",
+    "test:sl": "karma start karma.sl.config.js --compatibility all --coverage"
   },
   "lint-staged": {
     "*.js": [
