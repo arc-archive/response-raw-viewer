@@ -51,7 +51,7 @@ import { html, css, LitElement } from 'lit-element';
  * @appliesMixin PayloadParserMixin
  */
 class ResponseRawViewer extends LitElement {
-  static get styles() {
+  get styles() {
     return css`:host {
       display: block;
       overflow: overlay;
@@ -103,7 +103,7 @@ class ResponseRawViewer extends LitElement {
       wrapText
     } = this;
     const tabIndex = wrapText ? '-1' : '0';
-    return html`
+    return html`<style>${this.styles}</style>
     <div class="${_actionsPanelClass}">
       <slot name="content-action"></slot>
     </div>
